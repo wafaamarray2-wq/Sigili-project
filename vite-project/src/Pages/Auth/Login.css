@@ -1,0 +1,481 @@
+/* Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Alexandria", sans-serif;
+
+  background: #f6f8fc;
+}
+
+/* الصفحة كلها */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+}
+
+/* ===========================
+        الجزء الشمال
+=========================== */
+
+/* ===========================
+        Welcome Section
+=========================== */
+
+.welcome-section {
+  width: 40%;
+  min-height: 100vh;
+  background: #071d49;
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: #fff;
+}
+
+.welcome-section::before {
+  content: "";
+
+  position: absolute;
+
+  width: 520px;
+
+  height: 520px;
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(215, 181, 109, 0.18);
+
+  top: -280px;
+
+  right: -230px;
+}
+
+.welcome-section::after {
+  content: "";
+
+  position: absolute;
+
+  width: 520px;
+
+  height: 520px;
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(215, 181, 109, 0.18);
+
+  bottom: -280px;
+
+  left: -230px;
+}
+
+/* اللوجو */
+
+.logo {
+  width: 220px;
+
+  margin-bottom: 25px;
+
+  z-index: 2;
+}
+
+/* اسم البرنامج */
+
+.logo-title {
+  font-size: 40px;
+
+  font-weight: 700;
+
+  color: #d8b56a;
+
+  margin-bottom: 20px;
+
+  z-index: 2;
+}
+
+/* العنوان */
+
+.sub-title {
+  font-size: 28px;
+
+  font-weight: 500;
+
+  margin-bottom: 35px;
+
+  z-index: 2;
+}
+
+/* الخط */
+
+.gold-line {
+  width: 280px;
+
+  height: 2px;
+
+  background: #d8b56a;
+
+  margin-bottom: 35px;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+.gold-line::after {
+  content: "";
+
+  position: absolute;
+
+  width: 10px;
+
+  height: 10px;
+
+  background: #d8b56a;
+
+  left: 50%;
+
+  top: 50%;
+
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* الوصف */
+
+.description {
+  max-width: 400px;
+
+  text-align: center;
+
+  line-height: 2;
+
+  font-size: 22px;
+
+  color: #f2f2f2;
+
+  z-index: 2;
+  margin-bottom: 100px;
+}
+
+/* الجزء السفلي */
+
+.footer-content {
+  position: absolute;
+
+  bottom: 40px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.security {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.shield-icon {
+  width: 75px;
+
+  margin-bottom: -8px;
+}
+
+.security-text {
+  color: #ececec;
+
+  font-size: 21px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.5px;
+}
+
+.version {
+  margin-top: 40px;
+  color: #d7b56d;
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.copyright {
+  margin-top: 12px;
+
+  color: #ececec;
+
+  font-size: 17px;
+}
+/* النقط */
+
+.dots {
+  position: absolute;
+
+  width: 70px;
+
+  height: 70px;
+
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.45) 1.8px,
+    transparent 1.8px
+  );
+
+  background-size: 14px 14px;
+
+  opacity: 0.5;
+}
+
+.dots-top {
+  top: 70px;
+
+  left: 40px;
+}
+
+.dots-bottom {
+  bottom: 70px;
+
+  right: 40px;
+}
+
+/* ===========================
+        الجزء اليمين
+=========================== */
+
+.login-section {
+  width: 60%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #f7f9fc;
+}
+
+.login-card {
+  width: 560px;
+
+  background: white;
+
+  padding: 50px;
+
+  border-radius: 25px;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.login-card h2 {
+  text-align: center;
+
+  font-size: 45px;
+
+  color: #071d49;
+
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+
+  color: gray;
+
+  font-size: 22px;
+
+  margin-bottom: 40px;
+}
+
+/*=========================
+       Input
+=========================*/
+
+.input-group {
+  margin-bottom: 25px;
+  direction: rtl;
+}
+
+.input-group label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  font-size: 19px;
+
+  font-weight: 600;
+
+  color: #071d49;
+}
+
+.input-box {
+  display: flex;
+
+  align-items: center;
+
+  height: 60px;
+
+  border: 1px solid #dcdcdc;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+}
+
+.input-icon {
+  width: 60px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 22px;
+
+  color: #8c8c8c;
+
+  border-left: 1px solid #e8e8e8;
+}
+
+.input-box input {
+  flex: 1;
+
+  height: 100%;
+
+  border: none;
+
+  outline: none;
+
+  padding: 0 18px;
+
+  font-size: 17px;
+}
+
+.eye-btn {
+  width: 60px;
+
+  height: 100%;
+
+  border: none;
+
+  background: white;
+
+  cursor: pointer;
+
+  font-size: 20px;
+
+  color: #888;
+}
+
+/*======================
+      remember
+======================*/
+
+.login-options {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 30px;
+}
+
+.remember {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+.remember input {
+  width: 18px;
+
+  height: 18px;
+}
+
+.forgot-password {
+  text-decoration: none;
+
+  color: #0f4cff;
+
+  font-weight: 600;
+}
+
+/*=========================
+        Buttons
+=========================*/
+
+.login-btn {
+  width: 100%;
+
+  height: 60px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #071d49;
+
+  color: white;
+
+  font-size: 22px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  margin-bottom: 20px;
+
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background: #0b2d69;
+}
+
+.register-btn {
+  width: 100%;
+
+  height: 60px;
+
+  background: white;
+
+  border: 2px solid #071d49;
+
+  border-radius: 12px;
+
+  font-size: 20px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.register-btn:hover {
+  background: #071d49;
+
+  color: white;
+}
