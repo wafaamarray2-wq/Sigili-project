@@ -33,7 +33,7 @@ function Register() {
   };
   return (
     <div className="register-page">
-      <WelcomeSection />
+     
 
       <div className="register-section">
         <div className="register-card">
@@ -128,6 +128,7 @@ function Register() {
           </form>
         </div>
       </div>
+       <WelcomeSection />
     </div>
   );
 }

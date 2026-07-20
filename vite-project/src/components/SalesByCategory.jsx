@@ -1,12 +1,4 @@
-import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  Tooltip,
-} from "recharts";
-
-
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
 const data = [
   {
@@ -43,44 +35,42 @@ function SalesByCategory() {
 
       <div className="category-content">
         <div className="category-chart">
-          <ResponsiveContainer width="100%" height={250}>
+          <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
                 data={data}
                 dataKey="value"
-                innerRadius={60}
-                outerRadius={90}
+                innerRadius={70}
+                outerRadius={110}
                 paddingAngle={3}
               >
                 {data.map((item, index) => (
-                  <Cell
-                    key={index}
-                    fill={item.color}
-                  />
+                  <Cell key={index} fill={item.color} />
                 ))}
               </Pie>
 
-              <Tooltip />
+              <Tooltip
+                formatter={(value) => [`${value}%`, "النسبة"]}
+                contentStyle={{
+                  borderRadius: "12px",
+                  border: "1px solid #E5E7EB",
+                  boxShadow: "0 8px 20px rgba(0,0,0,.08)",
+                }}
+              />
             </PieChart>
           </ResponsiveContainer>
         </div>
 
         <div className="category-list">
           {data.map((item, index) => (
-            <div
-              key={index}
-              className="category-item"
-            >
+            <div key={index} className="category-item">
               <div className="category-name">
-                <span
-                  className="dot"
-                  style={{ background: item.color }}
-                ></span>
+                <span className="dot" style={{ background: item.color }}></span>
 
-                {item.name}
+                <span>{item.name}</span>
               </div>
 
-              <span>{item.value}%</span>
+              <span className="category-percent">{item.value}%</span>
             </div>
           ))}
         </div>

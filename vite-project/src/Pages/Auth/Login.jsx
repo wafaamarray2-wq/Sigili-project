@@ -29,8 +29,6 @@ function Login() {
   return (
     <div className="login-page">
       {/* الجزء الشمال */}
-      <WelcomeSection />
-
       {/* الجزء اليمين */}
       <div className="login-section">
         <form className="login-card" onSubmit={handleSubmit}>
@@ -73,22 +71,20 @@ function Login() {
             </Link>
           </div>
 
-
-
           <Link to="/Dashboard">
-           <button className="login-btn" type="submit">
-            تسجيل الدخول
-          </button>
+            <button className="login-btn" type="submit">
+              تسجيل الدخول
+            </button>
           </Link>
-         
 
-          <Link  to="/register">
+          <Link to="/register">
             <button className="New-register-btn" type="button">
               إنشاء حساب محل جديد
             </button>
           </Link>
         </form>
-      </div>
+      </div>{" "}
+      <WelcomeSection />
     </div>
   );
 }

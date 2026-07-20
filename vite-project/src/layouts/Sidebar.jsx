@@ -32,7 +32,7 @@ function Sidebar() {
           <FiShoppingCart />
           <span>الكاشير (pos)</span>
         </NavLink>
-        <NavLink to="/products">
+        <NavLink to="products">
           <FiBox />
           <span>المنتجات</span>
         </NavLink>

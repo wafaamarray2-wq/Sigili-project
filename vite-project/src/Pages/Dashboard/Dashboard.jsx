@@ -17,15 +17,15 @@ function Dashboard() {
 
       <StatsCards />
 
-      <div className="dashboard-grid">
-        <SalesChart />
-        <LowStock />
-      </div>
-      <div className="dashboard-bottom">
-        <RecentSales />
+    <div className="dashboard-grid">
+  <LowStock /> 
+ <SalesChart />
+</div>
 
-        <SalesByCategory />
-      </div>
+<div className="dashboard-bottom">
+  <SalesByCategory />
+  <RecentSales />
+</div>
     </div>
   );
 }

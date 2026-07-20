@@ -1,0 +1,254 @@
+.products-page {
+  padding: 25px;
+}
+
+/* ===========================
+        Header
+=========================== */
+
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.products-header h2 {
+  color: #071d49;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #071d49;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 22px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: .3s;
+}
+
+.add-btn:hover {
+  background: #0d2d6e;
+}
+
+/* ===========================
+        Form
+=========================== */
+.product-form{
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr;
+gap:18px;
+
+background:#fff;
+padding:25px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.product-form input{
+height:50px;
+}
+
+.product-form input,
+.product-form select {
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 15px;
+  outline: none;
+  transition: .3s;
+}
+
+.product-form input:focus,
+.product-form select:focus {
+  border-color: #2563EB;
+}
+
+.save-btn {
+  border: none;
+  background: #D8B56A;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: .3s;
+  
+width:100%;
+height:50px;
+
+}
+
+.save-btn:hover {
+  background: #c8a34e;
+}
+
+/* ===========================
+        Search
+=========================== */
+
+.search-box {
+  position: relative;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.search-box input {
+  width: 100%;
+  height: 55px;
+  border: 1px solid #E5E7EB;
+  border-radius: 14px;
+  padding: 0 20px;
+  padding-right: 50px; /* مساحة للأيقونة */
+  font-size: 15px;
+  outline: none;
+}
+
+.search-box input:focus {
+  border-color: #2563EB;
+}
+
+.search-icon {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94A3B8;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+/* ===========================
+        Table
+=========================== */
+
+.products-table {
+  background: white;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(7,29,73,.06);
+}
+
+.products-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.products-table thead {
+  background: #071d49;
+}
+
+.products-table thead th {
+  color: white;
+  padding: 18px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.products-table tbody td {
+  text-align: center;
+  padding: 18px;
+  border-bottom: 1px solid #EEF2F7;
+  color: #071d49;
+}
+
+.products-table tbody tr {
+  transition: .3s;
+}
+
+.products-table tbody tr:hover {
+  background: #F8FAFC;
+}
+
+/* ===========================
+        Buttons
+=========================== */
+
+
+
+
+
+
+.edit-btn {
+  background: #2563EB;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: .3s;
+  font-weight:600;
+  font-size:13px;
+
+}
+
+.edit-btn:hover {
+  background: #1d4ed8;
+}
+
+.delete-btn {
+  background: #EF4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: .3s;
+    font-size:13px;
+      font-weight:600;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
+/* ===========================
+        Responsive
+=========================== */
+
+@media(max-width:1200px){
+
+.product-form{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.product-form{
+
+grid-template-columns:1fr;
+
+}
+
+.products-header{
+
+flex-direction:column;
+gap:15px;
+align-items:flex-start;
+
+}
+
+.products-table{
+
+overflow-x:auto;
+
+}
+
+.products-table table{
+
+min-width:750px;
+
+}
+
+}
