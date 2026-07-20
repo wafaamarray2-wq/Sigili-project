@@ -42,7 +42,8 @@ function Register() {
           <p className="register-subtitle">🚀 ابدأ إدارة متجرك مع سجلي</p>
 
           <form className="register-form"  onSubmit={handleSubmit}>
-            <Input
+            <div className="form-grid">
+   <Input 
               label="اسم المحل"
               value={formDetails.shopName}
              name="shopName"
@@ -108,7 +109,11 @@ function Register() {
                onChange={handleChange}
             />
 
+            </div>
+         
+
             <div className="terms">
+              
               <input type="checkbox" id="terms" />
               
               <label htmlFor="terms">أوافق على الشروط والأحكام</label>

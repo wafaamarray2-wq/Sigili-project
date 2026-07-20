@@ -73,12 +73,17 @@ function Login() {
             </Link>
           </div>
 
-          <button className="login-btn" type="submit">
+
+
+          <Link to="/Dashboard">
+           <button className="login-btn" type="submit">
             تسجيل الدخول
           </button>
+          </Link>
+         
 
           <Link  to="/register">
-            <button className="register-btn" type="button">
+            <button className="New-register-btn" type="button">
               إنشاء حساب محل جديد
             </button>
           </Link>

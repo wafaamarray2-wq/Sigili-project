@@ -1,0 +1,219 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f7f8fc;
+  direction: rtl;
+}
+
+/* ================= Sidebar ================= */
+
+.sidebar {
+  width: 280px;
+  background: #071d49;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+
+  padding: 25px 20px;
+
+    min-height:100vh;
+}
+
+.logo{
+   margin-top:15px;
+   
+       text-align:center;
+    margin-bottom:40px;
+}
+
+.logo img {
+   width:140px;
+    margin-bottom:15px;
+}
+
+.logo h2{
+
+    color:#D8B56A;
+
+    font-size:34px;
+
+    font-weight:700;
+  
+
+}
+
+.logo p{
+
+    color:#ffffffd0;
+
+    font-size:15px;
+
+    margin-top:15px;
+
+}
+
+.logo-line{
+
+    width:80%;
+
+    height:2px;
+
+    margin:22px auto;
+
+    background:#D8B56A;
+
+    border-radius:5px;
+
+}
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+
+   flex:1;
+
+}
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  text-decoration: none;
+
+  color: white;
+
+   padding:16px 20px;
+
+  border-radius: 14px;
+
+  transition: 0.3s;
+
+
+      height:52px;
+    font-size:17px;
+}
+
+.sidebar nav a svg {
+  font-size: 22px;
+}
+
+.sidebar nav a:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sidebar nav .active {
+  /* /* background: #d8b56a;
+  color: #071d49; */
+  /* font-weight: 600; */
+
+
+
+
+    background:#D8B56A;
+
+    color:#071D49;
+
+    font-weight:bold;
+
+    box-shadow:0 8px 20px rgba(216,181,106,.35);
+}
+
+.logout {
+  width: 100%;
+
+  border: none;
+
+  border-radius: 14px;
+
+  padding: 15px;
+
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  color: white;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+   margin-top:auto;
+    margin-bottom:15px;
+  transition: 0.3s;
+}
+
+.logout:hover {
+  background: #d8b56a;
+
+  color: #071d49;
+}
+
+/* ================= Content ================= */
+
+.dashboard-content {
+  flex: 1;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+/* ================= Navbar ================= */
+
+.navbar {
+  height: 80px;
+
+  background: white;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+
+    padding:0 40px;
+
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+}
+
+.navbar h2 {
+  color: #071d49;
+
+  font-size: 26px;
+}
+
+.user-menu {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  cursor: pointer;
+
+  color: #071d49;
+
+  font-weight: 600;
+}
+
+/* ================= Pages ================= */
+
+.page-content {
+  padding: 35px;
+
+  flex: 1;
+}
