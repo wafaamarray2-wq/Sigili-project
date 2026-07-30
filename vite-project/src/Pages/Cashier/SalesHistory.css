@@ -1,0 +1,128 @@
+.sales-page {
+  background: #fff;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+.sales-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+  gap:20px;
+}
+
+.sales-header h2{
+  color:#0f2557;
+  font-size:40px;
+  margin:0;
+  font-weight:700;
+}
+
+.sales-header input{
+  width:320px;
+  height:46px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  padding:0 18px;
+  font-size:15px;
+  outline:none;
+  transition:.3s;
+}
+
+.sales-header input:focus{
+  border-color:#d8b56a;
+  box-shadow:0 0 0 4px rgba(216,181,106,.2);
+}
+
+/*========================*/
+
+.sales-table{
+  width:100%;
+  border-collapse:collapse;
+  overflow:hidden;
+  border-radius:16px;
+}
+
+.sales-table thead{
+  background:#11285b;
+}
+
+.sales-table thead th{
+  color:white;
+  padding:18px;
+  font-size:18px;
+  font-weight:600;
+  text-align:center;
+}
+
+.sales-table tbody td{
+  padding:20px 15px;
+  text-align:center;
+  border-bottom:1px solid #ececec;
+  font-size:17px;
+}
+
+.sales-table tbody tr{
+  transition:.25s;
+}
+
+.sales-table tbody tr:hover{
+  background:#fafbff;
+}
+
+/*========================*/
+
+.sales-table small{
+  display:block;
+  margin-top:4px;
+  color:#666;
+}
+
+/*==========================
+      View Sale Button
+==========================*/
+
+.view-sale-btn {
+  min-width: 75px;
+  height: 36px;
+  border: none;
+  border-radius: 10px;
+  background: #d8b56a;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.view-sale-btn:hover {
+  background: #c9a14d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(216, 181, 106, 0.35);
+}
+
+.view-sale-btn:active {
+  transform: scale(0.96);
+}
+
+/*========================*/
+
+.payment-badge{
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:25px;
+  background:#fff5d8;
+  color:#b8860b;
+  font-weight:600;
+  font-size:14px;
+}
+
+/*========================*/
+
+.empty-row td{
+  padding:35px;
+  color:#777;
+  font-size:18px;
+}

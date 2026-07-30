@@ -28,7 +28,7 @@ function Sidebar() {
           <FiHome />
           <span>الرئيسية</span>
         </NavLink>
-        <NavLink to="/casher">
+        <NavLink to="casher">
           <FiShoppingCart />
           <span>الكاشير (pos)</span>
         </NavLink>
@@ -36,7 +36,7 @@ function Sidebar() {
           <FiBox />
           <span>المنتجات</span>
         </NavLink>
-        <NavLink to="/sales-history">
+        <NavLink to="sales-history">
           <FiFileText />
           <span>سجل المبيعات</span>
         </NavLink>
