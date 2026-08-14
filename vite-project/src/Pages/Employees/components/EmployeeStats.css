@@ -1,0 +1,114 @@
+/* =====================================
+        EMPLOYEE STATS
+===================================== */
+
+.employee-stats-section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+/* ================= CARD ================= */
+
+.employee-stat-card {
+  background: #fff;
+
+  border-radius: 18px;
+
+  border: 1px solid #edf1f7;
+
+  padding: 24px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+
+  transition: 0.3s;
+}
+
+.employee-stat-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ================= CONTENT ================= */
+
+.employee-stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.employee-stat-title {
+  font-size: 15px;
+
+  color: #6b7280;
+
+  font-weight: 600;
+}
+
+.employee-stat-value {
+  font-size: 36px;
+
+  font-weight: 800;
+
+  color: #071d49;
+
+  line-height: 1;
+}
+
+/* ================= ICON ================= */
+
+.employee-stat-icon {
+  width: 60px;
+
+  height: 60px;
+
+  border-radius: 16px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+}
+
+.employee-stat-icon svg {
+  font-size: 26px;
+}
+
+/* ================= COLORS ================= */
+
+.employee-total {
+  background: #071d49;
+}
+
+.employee-active {
+  background: #22c55e;
+}
+
+.employee-inactive {
+  background: #ef4444;
+}
+
+.employee-cashier {
+  background: #d4a24c;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1200px) {
+  .employee-stats-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .employee-stats-section {
+    grid-template-columns: 1fr;
+  }
+}

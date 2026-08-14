@@ -7,6 +7,7 @@ import Products from "./Pages/Products/Products";
 import Cashier from "./Pages/Cashier/Cashier";
 import SalesHistory from "./Pages/Cashier/SalesHistory";
 import Expenses from "./Pages/Expenses/Expenses";
+import Employees from "./Pages/Employees/Employees";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
 
   <Route path="sales-history" element={<SalesHistory />} /> 
   <Route path="expenses" element={<Expenses />} /> 
+  <Route path="employees" element={<Employees />} /> 
 </Route>
     </Routes>
 

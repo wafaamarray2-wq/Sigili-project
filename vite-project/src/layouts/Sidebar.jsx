@@ -46,9 +46,9 @@ function Sidebar() {
           <span>المصروفات</span>
         </NavLink>
 
-        <NavLink to="/employees">
+        <NavLink to="employees">
           <FiUsers />
-          <span>الموظفون</span>
+          <span>إدارة المستخدمين</span>
         </NavLink>
 
         <NavLink to="/settings">
