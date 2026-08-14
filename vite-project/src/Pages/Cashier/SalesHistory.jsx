@@ -98,67 +98,104 @@ function SalesHistory() {
         </tbody>
       </table>
 
-   
-   {selectedSale && (
-  <div className="modal-overlay">
-    <div className="sale-modal">
+      {selectedSale && (
+        <div className="modal-overlay" onClick={() => setSelectedSale(null)}>
+          <div className="sale-modal" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="close-icon"
+              onClick={() => setSelectedSale(null)}
+            >
+              ✕
+            </button>
 
-      <h2>تفاصيل الفاتورة</h2>
+            <h3 className="receipt-title">اسم المحل</h3>
 
-      <p><strong>رقم الفاتورة:</strong> {selectedSale.invoiceNo}</p>
+            <hr />
 
-      <p><strong>العميل:</strong> {selectedSale.customer}</p>
+            <div className="receipt-info">
+              <div className="receipt-line">
+                <span>رقم الفاتورة :</span>
+                <strong>{selectedSale.invoiceNo}</strong>
+              </div>
 
-      <p><strong>التاريخ:</strong> {selectedSale.date}</p>
+              <div className="receipt-line">
+                <span>التاريخ :</span>
+                <strong>{selectedSale.date}</strong>
+              </div>
 
-      <p><strong>الوقت:</strong> {selectedSale.time}</p>
+              <div className="receipt-line">
+                <span>الوقت :</span>
+                <strong>{selectedSale.time}</strong>
+              </div>
+              <div className="receipt-line">
+                <span>اسم العميل :</span>
+                <strong>{selectedSale.customer || "عميل نقدي"}</strong>
+              </div>
 
-      <hr />
+              <div className="receipt-line">
+                <span>طريقة الدفع :</span>
+                <strong>{selectedSale.paymentMethod}</strong>
+              </div>
+            </div>
 
-      <table className="modal-table">
-        <thead>
-          <tr>
-            <th>المنتج</th>
-            <th>السعر</th>
-            <th>الكمية</th>
-            <th>الإجمالي</th>
-          </tr>
-        </thead>
+            <table className="receipt-table">
+              <thead>
+                <tr>
+                  <th>المنتج</th>
+                  <th>السعر</th>
+                  <th>الكمية</th>
+                  <th>الإجمالي</th>
+                </tr>
+              </thead>
 
-        <tbody>
-          {selectedSale.items.map((item) => (
-            <tr key={item.id}>
-              <td>{item.name}</td>
-              <td>{item.price} ج</td>
-              <td>{item.qty}</td>
-              <td>{item.price * item.qty} ج</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+              <tbody>
+                {selectedSale.items.map((item) => (
+                  <tr key={item.id}>
+                    <td>{item.name}</td>
+                    <td>{item.price} ج</td>
+                    <td>{item.qty}</td>
+                    <td>{item.price * item.qty} ج</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
 
-      <hr />
+            <div className="receipt-summary">
+              <div className="receipt-total">
+                <span>الإجمالي</span>
+                <span>{selectedSale.total} ج</span>
+              </div>
 
-      <div className="invoice-summary">
-        <p>الإجمالي : {selectedSale.total} ج</p>
-        <p>الخصم : {selectedSale.discount} ج</p>
-        <p>المطلوب : {selectedSale.finalTotal} ج</p>
-        <p>المدفوع : {selectedSale.paid} ج</p>
-        <p>المتبقي : {selectedSale.remaining} ج</p>
-        <p>طريقة الدفع : {selectedSale.paymentMethod}</p>
-      </div>
+              <div className="receipt-total">
+                <span>الخصم</span>
+                <span>{selectedSale.discount} ج</span>
+              </div>
 
-      <button
-        className="close-modal"
-        onClick={() => setSelectedSale(null)}
-      >
-        إغلاق
-      </button>
+              <div className="receipt-total total-required">
+                <span>المطلوب</span>
+                <span>{selectedSale.finalTotal} ج</span>
+              </div>
 
-    </div>
-  </div>
-)}
+              <div className="receipt-total">
+                <span>المدفوع</span>
+                <span>{selectedSale.paid} ج</span>
+              </div>
 
+              <div className="receipt-total">
+                <span>الباقي</span>
+
+                <span
+                  className={
+                    selectedSale.remaining === 0 ? "paid" : "remaining"
+                  }
+                >
+                  {selectedSale.remaining} ج
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

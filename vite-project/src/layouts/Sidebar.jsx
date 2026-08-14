@@ -41,7 +41,7 @@ function Sidebar() {
           <span>سجل المبيعات</span>
         </NavLink>
 
-        <NavLink to="/expenses">
+        <NavLink to="expenses">
           <FiDollarSign />
           <span>المصروفات</span>
         </NavLink>

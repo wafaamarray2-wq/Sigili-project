@@ -1,0 +1,72 @@
+.modal-overlay{
+
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
+}
+
+.expense-modal{
+
+    width:760px;
+
+    background:white;
+
+    border-radius:26px;
+
+    padding:35px;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.15);
+
+}
+
+.expense-modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+.expense-modal-header h2{
+
+    color:#071d49;
+
+    font-size:38px;
+
+    font-weight:800;
+
+}
+
+.expense-modal-header button{
+
+    border:none;
+
+    background:none;
+
+    font-size:34px;
+
+    cursor:pointer;
+
+    color:#6b7280;
+
+}
+
+.expense-modal-body{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}

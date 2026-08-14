@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useReactToPrint } from "react-to-print";
+import ReceiptPrint from "./ReceiptPrint";
 import "./Cashier.css";
 
 function Cashier() {
@@ -21,13 +23,16 @@ function Cashier() {
   const [cart, setCart] = useState([]);
   const [name, setName] = useState("");
   const [invoiceNo, setInvoiceNo] = useState("");
+  const receiptRef = useRef(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
   useEffect(() => {
     const savedProducts = localStorage.getItem("products");
 
     if (savedProducts) {
       setProducts(JSON.parse(savedProducts));
     }
-     generateInvoiceNo();
+    generateInvoiceNo();
   }, []);
 
   const updateCart = (id, change) => {
@@ -127,11 +132,10 @@ function Cashier() {
     }
   };
 
-
   const generateInvoiceNo = () => {
-  const sales = JSON.parse(localStorage.getItem("sales")) || [];
-  setInvoiceNo(`INV-${sales.length + 1001}`);
-};
+    const sales = JSON.parse(localStorage.getItem("sales")) || [];
+    setInvoiceNo(`INV-${sales.length + 1001}`);
+  };
   const completeSale = () => {
     if (cart.length === 0) {
       alert("الفاتورة فارغة");
@@ -158,17 +162,33 @@ function Cashier() {
     sales.push(newSale);
 
     localStorage.setItem("sales", JSON.stringify(sales));
-    setCart([]);
-    setDiscount(0);
-    setPaid(0);
-    setName("");
-    setPaymentMethod("كاش");
-    // setSearch("");
-    // setSelectedProduct("");
-    // setQty(1);
-  generateInvoiceNo();
-    alert("تمت عملية البيع بنجاح");
+    // setCart([]);
+    // setDiscount(0);
+    // setPaid(0);
+    // setName("");
+    // setPaymentMethod("كاش");
+
+    // generateInvoiceNo();
+    setShowSuccessModal(true);
   };
+
+  const handlePrint = useReactToPrint({
+    contentRef: receiptRef,
+
+    documentTitle: `Invoice-${invoiceNo}`,
+
+    onAfterPrint: () => {
+      setShowSuccessModal(false);
+
+      setCart([]);
+      setDiscount(0);
+      setPaid(0);
+      setName("");
+      setPaymentMethod("كاش");
+
+      generateInvoiceNo();
+    },
+  });
 
   const filteredProducts = products.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase()),
@@ -328,7 +348,7 @@ function Cashier() {
 
         <hr />
 
-        <p>رقم الفاتورة :  {invoiceNo}</p>
+        <p>رقم الفاتورة : {invoiceNo}</p>
 
         <p>التاريخ : {new Date().toLocaleDateString()}</p>
 
@@ -425,6 +445,39 @@ function Cashier() {
         <button onClick={completeSale}>إتمام البيع</button>
 
         <p className="par">شكراً لزيارتكم ❤️</p>
+      </div>
+
+      {showSuccessModal && (
+        <div className="success-overlay">
+          <div className="success-modal">
+            <div className="success-icon">✅</div>
+
+            <h2>تمت عملية البيع بنجاح</h2>
+
+            <p>تم حفظ الفاتورة بنجاح.</p>
+
+            <button className="print-btn" onClick={handlePrint}>
+              🖨️ طباعة الفاتورة
+            </button>
+            <button onClick={() => setShowSuccessModal(false)}>إغلاق</button>
+          </div>
+        </div>
+      )}
+    
+
+       <div  style={{ display: "none" }}>
+      <ReceiptPrint
+        ref={receiptRef}
+        invoiceNo={invoiceNo}
+        customer={name}
+        cart={cart}
+        total={total}
+        discount={discount}
+        finalTotal={finalTotal}
+        paid={paid}
+        remaining={remaining}
+        paymentMethod={paymentMethod}
+      /> 
       </div>
     </div>
   );

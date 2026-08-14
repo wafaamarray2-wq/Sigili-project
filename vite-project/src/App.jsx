@@ -6,6 +6,8 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import Products from "./Pages/Products/Products";
 import Cashier from "./Pages/Cashier/Cashier";
 import SalesHistory from "./Pages/Cashier/SalesHistory";
+import Expenses from "./Pages/Expenses/Expenses";
+
 function App() {
   return (
     <Routes>
@@ -21,6 +23,7 @@ function App() {
   
 
   <Route path="sales-history" element={<SalesHistory />} /> 
+  <Route path="expenses" element={<Expenses />} /> 
 </Route>
     </Routes>
 
