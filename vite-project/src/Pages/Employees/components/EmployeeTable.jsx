@@ -1,7 +1,17 @@
 import "./EmployeeTable.css";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import EmployeeRow from "./EmployeeRow";
 
-function EmployeeTable({ employees, search }) {
+function EmployeeTable({ employees, search, onEdit, onDelete }) {
+  const filteredEmployees = employees.filter((employee) => {
+    const searchValue = search.toLowerCase().trim();
+
+    return (
+      employee.name.toLowerCase().includes(searchValue) ||
+      employee.role.toLowerCase().includes(searchValue) ||
+      employee.phone.includes(searchValue)
+    );
+  });
+
   return (
     <div className="employee-table-container">
       <table className="employee-table">
@@ -11,6 +21,7 @@ function EmployeeTable({ employees, search }) {
             <th>الاسم</th>
             <th>الوظيفة</th>
             <th>رقم الهاتف</th>
+            <th>البريد الإلكتروني</th>
             <th>الراتب</th>
             <th>الحالة</th>
             <th>الإجراءات</th>
@@ -18,54 +29,20 @@ function EmployeeTable({ employees, search }) {
         </thead>
 
         <tbody>
-          {employees.length > 0 ? (
-            employees.map((employee, index) => (
-              <tr key={employee.id}>
-                <td>{index + 1}</td>
-
-                <td>{employee.name}</td>
-
-                <td>{employee.role}</td>
-
-                <td>{employee.phone}</td>
-
-                <td>{employee.salary} ج</td>
-
-                <td>
-                  <span
-                    className={
-                      employee.status === "نشط"
-                        ? "employee-status-active"
-                        : "employee-status-stop"
-                    }
-                  >
-                    {employee.status}
-                  </span>
-                </td>
-
-                <td>
-                  <div className="employee-actions">
-                    <button
-                      className="employee-edit-btn"
-                    //   onClick={() => onEdit(employee)}
-                    >
-                      <FaEdit />
-                    </button>
-
-                    <button
-                      className="employee-delete-btn"
-                    //   onClick={() => onDelete(employee.id)}
-                    >
-                      <FaTrash />
-                    </button>
-                  </div>
-                </td>
-              </tr>
+          {filteredEmployees.length > 0 ? (
+            filteredEmployees.map((employee, index) => (
+              <EmployeeRow
+                key={employee.id}
+                employee={employee}
+                index={index}
+                onEdit={onEdit}
+                onDelete={onDelete}
+              />
             ))
           ) : (
             <tr>
               <td colSpan="7" className="employee-empty">
-                لا يوجد موظفون
+                {search ? "لا توجد نتائج مطابقة للبحث" : "لا يوجد موظفون"}
               </td>
             </tr>
           )}

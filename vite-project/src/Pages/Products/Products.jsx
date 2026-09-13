@@ -20,9 +20,9 @@ function Products() {
 
   const [form, setForm] = useState({
     name: "",
-
     price: "",
     quantity: "",
+    barcode: "",
   });
 
   const handleChange = (e) => {
