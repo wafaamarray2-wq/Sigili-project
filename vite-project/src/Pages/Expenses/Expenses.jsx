@@ -1,6 +1,6 @@
 import "./Expenses.css";
 import ExpenseModal from "./ExpenseModal";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function Expenses() {
   const [open, setOpen] = useState(false);
@@ -107,16 +107,16 @@ function Expenses() {
   };
 
   const totalExpenses = expenses.reduce(
-  (sum, expense) => sum + Number(expense.amount),
-  0
-);
+    (sum, expense) => sum + Number(expense.amount),
+    0,
+  );
 
-const expenseCount = expenses.length;
+  const expenseCount = expenses.length;
 
-const highestExpense =
-  expenses.length > 0
-    ? Math.max(...expenses.map((e) => Number(e.amount)))
-    : 0;
+  const highestExpense =
+    expenses.length > 0
+      ? Math.max(...expenses.map((e) => Number(e.amount)))
+      : 0;
 
   return (
     <div className="expenses-page">
@@ -157,7 +157,7 @@ const highestExpense =
         <div className="expense-card">
           <p>أعلى مصروف</p>
 
-        <h3>{highestExpense} ج</h3>
+          <h3>{highestExpense} ج</h3>
         </div>
       </div>
 
@@ -267,7 +267,9 @@ const highestExpense =
           />
 
           <div className="expense-buttons">
-            <button className="cancel-btn">إلغاء</button>
+            <button className="cancel-btn" onClick={() => setOpen(false)}>
+              إلغاء
+            </button>
 
             <button className="save-btn" onClick={handleSaveExpense}>
               حفظ المصروف

@@ -21,6 +21,7 @@ function Products() {
   const [form, setForm] = useState({
     name: "",
     price: "",
+    purchasePrice: "",
     quantity: "",
     barcode: "",
   });
@@ -56,6 +57,7 @@ function Products() {
     setForm({
       name: "",
       price: "",
+      purchasePrice: "",
       quantity: "",
     });
   };
@@ -74,6 +76,7 @@ function Products() {
     setForm({
       name: product.name,
       price: product.price,
+      purchasePrice: product.purchasePrice || "",
       quantity: product.quantity,
     });
 
@@ -109,8 +112,8 @@ function Products() {
             <tr>
               <th>#</th>
               <th>الاسم</th>
-
-              <th>السعر</th>
+              <th>سعر الشراء</th>
+              <th>سعر البيع</th>
               <th>الكمية</th>
               <th>التحكم</th>
             </tr>
@@ -122,7 +125,7 @@ function Products() {
                 <td>{index + 1}</td>
 
                 <td>{item.name}</td>
-
+                <td>{item.purchasePrice || 0} ج.م</td>
                 <td>{item.price} ج.م</td>
 
                 <td>{item.quantity}</td>
@@ -158,9 +161,19 @@ function Products() {
             onChange={handleChange}
           />
 
+        
+
           <input
             type="number"
-            placeholder="السعر"
+            placeholder="سعر الشراء"
+            name="purchasePrice"
+            value={form.purchasePrice}
+            onChange={handleChange}
+          />
+
+          <input
+            type="number"
+            placeholder="سعر البيع"
             name="price"
             value={form.price}
             onChange={handleChange}

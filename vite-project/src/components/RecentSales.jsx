@@ -1,50 +1,40 @@
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 function RecentSales() {
-  const sales = [
-    {
-      id: "#1025",
-      customer: "أحمد محمد",
-      total: "350 ج.م",
-      payment: "كاش",
-      date: "اليوم",
-      status: "مكتملة",
-    },
-    {
-      id: "#1024",
-      customer: "سارة علي",
-      total: "1,250 ج.م",
-      payment: "فيزا",
-      date: "اليوم",
-      status: "مكتملة",
-    },
-    {
-      id: "#1023",
-      customer: "محمد حسن",
-      total: "820 ج.م",
-      payment: "كاش",
-      date: "أمس",
-      status: "مكتملة",
-    },
-    {
-      id: "#1022",
-      customer: "خالد محمود",
-      total: "470 ج.م",
-      payment: "فودافون كاش",
-      date: "أمس",
-      status: "مكتملة",
-    },
-  ];
+  const navigate = useNavigate();
+  const [sales, setSales] = useState([]);
+
+  useEffect(() => {
+    const savedSales = JSON.parse(localStorage.getItem("sales")) || [];
+
+    const recentSales = savedSales.slice().reverse().slice(0, 5);
+
+    setSales(recentSales);
+  }, []);
+
+  const formatDate = (dateString) => {
+    if (!dateString) return "-";
+
+    const date = new Date(dateString);
+
+    if (Number.isNaN(date.getTime())) {
+      return dateString;
+    }
+
+    return date.toLocaleDateString("ar-EG");
+  };
 
   return (
     <div className="recent-sales">
-
       <div className="recent-header">
         <h3>آخر عمليات البيع</h3>
 
-        <button>عرض الكل</button>
+        <button onClick={() => navigate("/dashboard/sales-history")}>
+          عرض الكل
+        </button>
       </div>
 
       <table>
-
         <thead>
           <tr>
             <th>رقم الفاتورة</th>
@@ -57,33 +47,35 @@ function RecentSales() {
         </thead>
 
         <tbody>
+          {sales.length > 0 ? (
+            sales.map((sale) => (
+              <tr key={sale.id}>
+                <td>{sale.invoiceNo}</td>
 
-          {sales.map((sale) => (
-            <tr key={sale.id}>
+                <td>{sale.customer}</td>
 
-              <td>{sale.id}</td>
+                <td>
+                  {Number(sale.finalTotal || 0).toLocaleString("ar-EG")} ج.م
+                </td>
 
-              <td>{sale.customer}</td>
+                <td>{sale.paymentMethod}</td>
 
-              <td>{sale.total}</td>
+                <td>{formatDate(sale.date)}</td>
 
-              <td>{sale.payment}</td>
-
-              <td>{sale.date}</td>
-
-              <td>
-                <span className="status completed">
-                  {sale.status}
-                </span>
+                <td>
+                  <span className="status completed">مكتملة</span>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="6" style={{ textAlign: "center" }}>
+                لا توجد عمليات بيع حتى الآن
               </td>
-
             </tr>
-          ))}
-
+          )}
         </tbody>
-
       </table>
-
     </div>
   );
 }

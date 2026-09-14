@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 import Input from "../../components/Input/Input";
 import WelcomeSection from "./WelcomeSection";
+import { saveCurrentUser, getDefaultAdmin } from "../../storage/authStorage";
 
+import { getEmployees } from "../../storage/employeeStorage";
 function Login() {
   const [formData, setFormData] = useState({
     userName: "",
@@ -23,7 +25,39 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    const admin = getDefaultAdmin();
+    const employees = getEmployees();
+
+    const foundEmployee = employees.find(
+      (employee) =>
+        employee.username === formData.userName &&
+        employee.password === formData.password &&
+        employee.status === "نشط",
+    );
+
+    const isAdmin =
+      formData.userName === admin.username &&
+      formData.password === admin.password;
+
+    if (isAdmin) {
+      saveCurrentUser(admin);
+      window.location.href = "/dashboard";
+      return;
+    }
+
+    if (foundEmployee) {
+      saveCurrentUser({
+        id: foundEmployee.id,
+        name: foundEmployee.name,
+        username: foundEmployee.username,
+        role: foundEmployee.accountRole,
+      });
+
+      window.location.href = "/dashboard";
+      return;
+    }
+
+    alert("اسم المستخدم أو كلمة المرور غير صحيحة");
   };
 
   return (
@@ -70,12 +104,9 @@ function Login() {
               نسيت كلمة المرور؟
             </Link>
           </div>
-
-          <Link to="/Dashboard">
-            <button className="login-btn" type="submit">
-              تسجيل الدخول
-            </button>
-          </Link>
+          <button className="login-btn" type="submit">
+            تسجيل الدخول
+          </button>
 
           <Link to="/register">
             <button className="New-register-btn" type="button">

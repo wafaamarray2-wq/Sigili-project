@@ -11,53 +11,79 @@ import {
   FiFileText,
 } from "react-icons/fi";
 
+import { getCurrentUser, logoutUser } from "../storage/authStorage";
+
 function Sidebar() {
+  const currentUser = getCurrentUser();
+  const isAdmin = currentUser?.role === "admin";
+
+  const handleLogout = () => {
+    logoutUser();
+    window.location.href = "/";
+  };
+
   return (
     <aside className="sidebar">
       <div className="logo">
         <img src={logo} alt="logo" />
         <h2>سجلي</h2>
-
         <p>نظام إدارة المحلات</p>
-
         <div className="logo-line"></div>
       </div>
 
       <nav>
-        <NavLink to="/dashboard">
-          <FiHome />
-          <span>الرئيسية</span>
-        </NavLink>
-        <NavLink to="casher">
+        {/* Admin فقط */}
+        {isAdmin && (
+          <NavLink to="/dashboard">
+            <FiHome />
+            <span>الرئيسية</span>
+          </NavLink>
+        )}
+
+        {/* الكاشير - الكل */}
+        <NavLink to="/dashboard/casher">
           <FiShoppingCart />
-          <span>الكاشير (pos)</span>
+          <span>الكاشير (POS)</span>
         </NavLink>
-        <NavLink to="products">
-          <FiBox />
-          <span>المنتجات</span>
-        </NavLink>
-        <NavLink to="sales-history">
+
+        {/* Admin فقط */}
+        {isAdmin && (
+          <NavLink to="/dashboard/products">
+            <FiBox />
+            <span>المنتجات</span>
+          </NavLink>
+        )}
+
+        {/* الكل */}
+        <NavLink to="/dashboard/sales-history">
           <FiFileText />
           <span>سجل المبيعات</span>
         </NavLink>
 
-        <NavLink to="expenses">
+        {/* الكل */}
+        <NavLink to="/dashboard/expenses">
           <FiDollarSign />
           <span>المصروفات</span>
         </NavLink>
 
-        <NavLink to="employees">
-          <FiUsers />
-          <span>إدارة المستخدمين</span>
-        </NavLink>
+        {/* Admin فقط */}
+        {isAdmin && (
+          <NavLink to="/dashboard/employees">
+            <FiUsers />
+            <span>إدارة الموظفين</span>
+          </NavLink>
+        )}
 
-        <NavLink to="/settings">
-          <FiSettings />
-          <span>الإعدادات</span>
-        </NavLink>
+        {/* Admin فقط */}
+        {isAdmin && (
+          <NavLink to="/settings">
+            <FiSettings />
+            <span>الإعدادات</span>
+          </NavLink>
+        )}
       </nav>
 
-      <button className="logout">
+      <button className="logout" onClick={handleLogout}>
         <FiLogOut />
         تسجيل الخروج
       </button>

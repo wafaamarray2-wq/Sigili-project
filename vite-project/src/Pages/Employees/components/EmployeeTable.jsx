@@ -20,6 +20,7 @@ function EmployeeTable({ employees, search, onEdit, onDelete }) {
             <th>#</th>
             <th>الاسم</th>
             <th>الوظيفة</th>
+            <th>اسم المستخدم</th>
             <th>رقم الهاتف</th>
             <th>البريد الإلكتروني</th>
             <th>الراتب</th>
@@ -41,7 +42,7 @@ function EmployeeTable({ employees, search, onEdit, onDelete }) {
             ))
           ) : (
             <tr>
-              <td colSpan="7" className="employee-empty">
+              <td colSpan="9" className="employee-empty">
                 {search ? "لا توجد نتائج مطابقة للبحث" : "لا يوجد موظفون"}
               </td>
             </tr>

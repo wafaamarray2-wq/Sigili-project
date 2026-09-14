@@ -14,6 +14,7 @@ function EmployeeRow({
       <td>{employee.name}</td>
 
       <td>{employee.role}</td>
+      <td>{employee.username}</td>
 
       <td>{employee.phone}</td>
 

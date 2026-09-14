@@ -36,141 +36,135 @@ function Cashier() {
   }, []);
 
   const updateCart = (id, change) => {
-    const product = products.find((p) => p.id === id);
-    if (!product) return;
+  const product = products.find((p) => p.id === id);
 
-    const cartItem = cart.find((c) => c.id === id);
+  if (!product) return;
 
-    // =====================
-    // إضافة منتج لأول مرة
-    // =====================
-    if (!cartItem) {
-      if (change <= 0) return;
+  const cartItem = cart.find((item) => item.id === id);
 
-      if (product.quantity < change) {
-        alert("الكمية المطلوبة أكبر من المخزون");
-        return;
-      }
+  // إضافة المنتج لأول مرة
+  if (!cartItem) {
+    if (change <= 0) return;
 
-      const updatedProducts = products.map((p) =>
-        p.id === id ? { ...p, quantity: p.quantity - change } : p,
-      );
-
-      setProducts(updatedProducts);
-      localStorage.setItem("products", JSON.stringify(updatedProducts));
-
-      setCart([
-        ...cart,
-        {
-          ...product,
-          qty: change,
-        },
-      ]);
-      setSelectedProduct("");
-      setSearch("");
-      setShowResults(false);
-      setQty(1);
-
+    if (product.quantity < change) {
+      alert("الكمية المطلوبة أكبر من المخزون");
       return;
     }
 
-    // =====================
-    // زيادة الكمية
-    // =====================
-    if (change > 0) {
-      if (product.quantity < change) {
-        alert("لا يوجد مخزون كافي");
-        return;
-      }
+    setCart([
+      ...cart,
+      {
+        ...product,
+        qty: change,
+      },
+    ]);
 
-      const updatedProducts = products.map((p) =>
-        p.id === id ? { ...p, quantity: p.quantity - change } : p,
-      );
+    setSelectedProduct("");
+    setSearch("");
+    setShowResults(false);
+    setQty(1);
 
-      setProducts(updatedProducts);
-      localStorage.setItem("products", JSON.stringify(updatedProducts));
+    return;
+  }
 
-      setCart(
-        cart.map((item) =>
-          item.id === id
-            ? {
-                ...item,
-                qty: item.qty + change,
-              }
-            : item,
-        ),
-      );
+  // زيادة الكمية
+  if (change > 0) {
+    const newQty = cartItem.qty + change;
 
+    if (product.quantity < change) {
+      alert("لا يوجد مخزون كافي");
       return;
     }
 
-    // =====================
-    // تقليل الكمية
-    // =====================
-    const updatedQty = cartItem.qty + change;
-
-    const updatedProducts = products.map((p) =>
-      p.id === id ? { ...p, quantity: p.quantity - change } : p,
+    setCart(
+      cart.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              qty: newQty,
+            }
+          : item,
+      ),
     );
 
-    setProducts(updatedProducts);
-    localStorage.setItem("products", JSON.stringify(updatedProducts));
+    return;
+  }
 
-    if (updatedQty <= 0) {
-      setCart(cart.filter((item) => item.id !== id));
-    } else {
-      setCart(
-        cart.map((item) =>
-          item.id === id
-            ? {
-                ...item,
-                qty: updatedQty,
-              }
-            : item,
-        ),
-      );
-    }
-  };
+  // تقليل الكمية أو حذف المنتج
+  const updatedQty = cartItem.qty + change;
+
+  if (updatedQty <= 0) {
+    setCart(cart.filter((item) => item.id !== id));
+  } else {
+    setCart(
+      cart.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              qty: updatedQty,
+            }
+          : item,
+      ),
+    );
+  }
+};
 
   const generateInvoiceNo = () => {
     const sales = JSON.parse(localStorage.getItem("sales")) || [];
     setInvoiceNo(`INV-${sales.length + 1001}`);
   };
   const completeSale = () => {
-    if (cart.length === 0) {
-      alert("الفاتورة فارغة");
-      return;
+  if (cart.length === 0) {
+    alert("الفاتورة فارغة");
+    return;
+  }
+
+  const sales = JSON.parse(localStorage.getItem("sales")) || [];
+
+  // خصم الكميات من المخزون بعد إتمام البيع فقط
+  const updatedProducts = products.map((product) => {
+    const cartItem = cart.find((item) => item.id === product.id);
+
+    if (!cartItem) {
+      return product;
     }
 
-    const sales = JSON.parse(localStorage.getItem("sales")) || [];
-
-    const newSale = {
-      id: Date.now(),
-      invoiceNo: `INV-${sales.length + 1001}`,
-      customer: name || "عميل نقدي",
-      items: cart,
-      total,
-      discount,
-      finalTotal,
-      paid,
-      remaining,
-      paymentMethod,
-      date: new Date().toLocaleDateString(),
-      time: new Date().toLocaleTimeString(),
+    return {
+      ...product,
+      quantity: product.quantity - cartItem.qty,
     };
+  });
 
-    sales.push(newSale);
+  setProducts(updatedProducts);
+  localStorage.setItem("products", JSON.stringify(updatedProducts));
 
-    localStorage.setItem("sales", JSON.stringify(sales));
-    // setCart([]);
-    // setDiscount(0);
-    // setPaid(0);
-    // setName("");
-    // setPaymentMethod("كاش");
+const saleDate = new Date();
 
-    // generateInvoiceNo();
-    setShowSuccessModal(true);
-  };
+const newSale = {
+  id: Date.now(),
+  invoiceNo: `INV-${sales.length + 1001}`,
+  customer: name || "عميل نقدي",
+  items: cart,
+  total,
+  discount,
+  finalTotal,
+  paid,
+  remaining,
+  paymentMethod,
+
+  // تاريخ ووقت ثابتين للحسابات
+  date: saleDate.toISOString(),
+
+  // نخلي الوقت للعرض فقط
+  time: saleDate.toLocaleTimeString(),
+};
+
+  sales.push(newSale);
+
+  localStorage.setItem("sales", JSON.stringify(sales));
+
+  setShowSuccessModal(true);
+};
 
   const handlePrint = useReactToPrint({
     contentRef: receiptRef,
